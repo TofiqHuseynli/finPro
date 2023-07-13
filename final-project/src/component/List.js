@@ -10,9 +10,12 @@ function List() {
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem("list002")) || []);
   const [info, setInfo] = useState(false);
   const [edit,setEdit] = useState({});
-  const [arrow,setArrow]=useState(true);
+  const [openCardKeys, setOpenCardKeys] = useState([]);
+
+  console.log(openCardKeys)
 
 
+  
 
 
 
@@ -32,15 +35,28 @@ function List() {
     setInfo(true)
   }
 
-  const handleDes = (data)=>{
-    lists.map((item, key) => {
-      if(data.id === key ? data : item){
-        return {...item, des: !item.des}
-      }
-      return item;
-    })
+  // const handleDes = (data)=>{
+  //   lists.map((item, key) => {
+  //     if(data.id === key ? data : item){
+  //       return {...item, des: !item.des}
+  //     }
+  //     return item;
+  //   })
 
-  }
+  // }
+
+  const onToggleCard = (key) => {
+    // let keys = openCardKeys; // bele edende ishlemedi.
+    let keys = [...openCardKeys];
+
+    if (keys.includes(key)) {
+        keys = keys.filter(index => index !== key)
+    } else {
+        keys.push(key)
+    }
+
+    setOpenCardKeys(keys)
+}
 
   return (
     <>
@@ -69,9 +85,13 @@ function List() {
 
 
       <div className="row row-cols-1 row-cols-md-4 g-4 sen con">
-        {lists.map((item, key) => (
-          <div className="col bod" key={key}>
-            <div className={arrow ? "card cr" : "test"}>
+        {lists.map((item, key) => {
+           let isOpen = openCardKeys.includes(key);
+
+
+           return(
+            <div className="col bod" key={key}>
+            <div className={!isOpen ? "card cr" : "test"}>
               <div className='element-nav'>
               <div className="card-body cb">
                  <img src={item.img} className="card-img-top im" /> 
@@ -83,15 +103,16 @@ function List() {
                   setEdit({ ...item, id: key })
                   setInfo(true)
                   }} className="bi bi-info-square-fill"></i>
-                <i onClick={()=>{
-                  setArrow(arrow ? false : true)
-                  handleDes(item)
-                }} className={`lists ${item.des ? "bi bi-caret-down-fill" : "bi bi-caret-up-fill" }`} ></i>
+                <i className={`lists ${!isOpen ? "bi bi-caret-down-fill" : "bi bi-caret-up-fill"}`}
+                    onClick={() => onToggleCard(key)}></i>
               </div>
               </div>
 
               <div className='desc'>
+                
+                
               <p >{item.des}</p>
+              
               </div>
               
               
@@ -99,8 +120,10 @@ function List() {
             
 
           </div>
+           )
+         
 
-        ))}
+                })}
 
 {/* <i class="bi bi-caret-up-fill">bi bi-caret-down-fill</i> */}
 
