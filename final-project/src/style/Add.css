@@ -1,0 +1,15 @@
+*,body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btn-sub{
+    background-color:#204EB2 ;
+    border-radius: 8px;
+    height: 50px;
+}
+
+.plus{
+    font-size: 18px;
+}

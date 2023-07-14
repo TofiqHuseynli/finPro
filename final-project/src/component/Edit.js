@@ -21,31 +21,31 @@ console.log({...edit,title,des,img});
         
         <Modal show={info} onHide={setInfo} >
     <Modal.Header closeButton>
-      <Modal.Title>Edit</Modal.Title>
+      <Modal.Title>Info</Modal.Title>
     </Modal.Header>
     <Modal.Body>
         <lable>Title</lable>
         <input
         onChange={(e)=>setTitle(e.target.value)}
         value={title}
-        type='text'className='form-control mb-4' />
+        type='text'className='form-control mb-4 mt-2' />
         <lable>Description</lable>
-        <input
+        <textarea
+        rows="5"
         onChange={(e)=>setDes(e.target.value)}
         value={des}
-        type='text'className='form-control mb-4' />
+        type='text'className='form-control mb-4 mt-2' />
         <lable>Img(logo)</lable>
         <input
         onChange={(e)=>setImg(e.target.value)}
         value={img}
-         type='text'className='form-control mb-3' />
+         type='text'className='form-control mb-3 mt-2' />
         <Button 
         onClick={()=>{
           onEdit({...edit,title,des,img})
           setInfo(false)
-
         }}
-        variant="primary" className='w-100'>
+        variant="primary" className='w-100 mt-3 btn-sub'>
         Submit
       </Button>
     </Modal.Body>

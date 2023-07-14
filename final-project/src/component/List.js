@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Add from './Add.js'
 import Edit from './Edit.js';
+import  Navbar  from './Navbar.js';
 
 
 
@@ -11,8 +12,9 @@ function List() {
   const [info, setInfo] = useState(false);
   const [edit,setEdit] = useState({});
   const [openCardKeys, setOpenCardKeys] = useState([]);
+  const [openMore, setOpenMore] = useState([]);
 
-  console.log(openCardKeys)
+  console.log(openMore)
 
 
   
@@ -58,8 +60,24 @@ function List() {
     setOpenCardKeys(keys)
 }
 
+const moreFunc = (key)=>{
+  let mor = [...openMore];
+
+  if(mor.includes(key)){
+    mor = mor.filter(index => index !==key)
+  }else{
+    mor.push(key)
+  }
+  setOpenMore(mor);
+
+}
+
   return (
     <>
+      <Navbar
+      setAdd={setAdd}
+     />
+
       <Add
         lists={lists}
         setLists={setLists}
@@ -76,17 +94,13 @@ function List() {
         onEdit={onEdit}
       />
 
-      <div className='d-flex justify-content-between  nav '>
-        <img src='https://www.ideastudio.com/wp-content/uploads/2018/07/lionheart.jpg' className='img-logo'/>
-        <button
-          onClick={() => setAdd(true)}
-          className='bt'>+Add</button>
-      </div>
+   
 
 
-      <div className="row row-cols-1 row-cols-md-4 g-4 sen con">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 sen con">
         {lists.map((item, key) => {
            let isOpen = openCardKeys.includes(key);
+           let isOpenMore = openMore.includes(key);
 
 
            return(
@@ -103,15 +117,20 @@ function List() {
                   setEdit({ ...item, id: key })
                   setInfo(true)
                   }} className="bi bi-info-square-fill"></i>
-                <i className={`lists ${!isOpen ? "bi bi-caret-down-fill" : "bi bi-caret-up-fill"}`}
-                    onClick={() => onToggleCard(key)}></i>
+                <i className={!isOpen ? "bi bi-caret-down-fill" : "bi bi-caret-up-fill"}
+                    onClick={() =>{
+                      moreFunc(isOpenMore ? key : isOpenMore )
+                      onToggleCard(key)
+                    } }></i>
               </div>
               </div>
 
               <div className='desc'>
+                {item.des.length > 500 ? <div><p>{isOpenMore ? item.des : item.des.slice(0, 500)}</p> <button onClick={()=>moreFunc(key)} className={!isOpenMore ? 'more-btn' : 'more-hide' }><u>more</u></button></div> : <p>{item.des}</p>}
                 
                 
-              <p >{item.des}</p>
+              
+
               
               </div>
               

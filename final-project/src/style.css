@@ -6,18 +6,19 @@
 .main{
     width: 100%;
     height: 100vh;
-    background-color: #b2d9ff;
+    background-color: #F4F6F9;
     overflow: hidden;
 }
 .nav{
-    width: 96%;
+    width: 100%;
     margin:auto;
-    margin-top: 10px;
-    height: 40px;
-    border: 1px solid rgb(68, 147, 238);
+    height: 60px;
     padding: 3px;
     border-radius: 3px;
     background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sen{
@@ -26,13 +27,19 @@
 }
 
 .bt{
-    background-color: rgb(137, 194, 52);
+    background-color:#204EB2;
     height: 30px;
-    width: 50px;
+    width: 60px;
     border: none;
     outline: none;
     border-radius: 6px;
     color: white;
+    font-size: 12px;
+    text-align: end;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     
 }
 
@@ -72,6 +79,8 @@
     border: none;
     height: 40px;  
     overflow: hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 
     
 }
@@ -86,8 +95,10 @@
 
 .desc{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 0 20px;
+    background-color: white;
+    z-index: 99;
     
 }
 
@@ -120,4 +131,28 @@
     border: none;
     height: auto;  
     background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+
+}
+
+.bi-caret-down-fill{
+    color: rebeccapurple;
+    transform: rotate(150deg);
+}
+
+.test .more-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #204EB2;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    
+}
+
+.more-hide{
+    display: none;
 }
