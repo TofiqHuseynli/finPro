@@ -75,12 +75,13 @@
 }
 
 
-.cr{
+.close-description{
     border: none;
     height: 40px;  
     overflow: hidden;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+   
 
     
 }
@@ -124,35 +125,40 @@
 }
 
 
-.test{
+.open-description{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     border: none;
+    overflow: hidden;
     height: auto;  
+    transition: 1s ease;
     background-color: white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     position: relative;
+   
 
 }
 
-.bi-caret-down-fill{
-    color: rebeccapurple;
-    transform: rotate(150deg);
+.btns div{
+    width: 25px;
+    height: 25px;
+
 }
 
-.test .more-btn{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: #204EB2;
-    position: absolute;
-    right: 15px;
-    bottom: 10px;
+.arrow-ico-div{
+    transform: rotate(180deg)!important;
+    transition: all 0.4s ease;
+    transform-origin:top bottom ;
+    
+   
     
 }
 
-.more-hide{
-    display: none;
+.arrow-div{
+    transform: rotate(0)!important;
+    transform-origin:top bottom;
+    transition: all 0.4s ease;
+    
 }
